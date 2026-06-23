@@ -1,0 +1,14 @@
+# この data フォルダの中身（answers.csv）に、ブラウザから直接アクセスできないようにする設定。
+# 回答データを他人にのぞかれないための「鍵」。
+# さくらのレンタルサーバー(Apache)で有効。
+
+# Apache 2.4 系
+<RequireAll>
+    Require all denied
+</RequireAll>
+
+# Apache 2.2 系（念のため）
+<IfModule !mod_authz_core.c>
+    Order allow,deny
+    Deny from all
+</IfModule>

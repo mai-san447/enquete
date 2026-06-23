@@ -1,0 +1,167 @@
+/* ===== 全体の土台 ===== */
+* {
+  box-sizing: border-box;            /* 幅の計算を分かりやすくする（前回CSSで学んだ項目） */
+}
+
+body {
+  margin: 0;
+  padding: 24px 12px;
+  font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif;
+  background: linear-gradient(135deg, #f3f7ff 0%, #fef6f9 100%);   /* やさしいグラデ背景 */
+  color: #333;
+  line-height: 1.7;
+}
+
+/* ===== 中央のカード ===== */
+.card {
+  max-width: 600px;
+  margin: 0 auto;
+  background: #fff;
+  border-radius: 16px;
+  padding: 32px 28px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+}
+.card.wide { max-width: 760px; }
+.card.center { text-align: center; }
+
+h1 {
+  font-size: 1.5rem;
+  margin: 0 0 12px;
+  color: #2b59c3;
+}
+h2 {
+  font-size: 1.15rem;
+  margin: 28px 0 10px;
+  padding-bottom: 6px;
+  border-bottom: 2px solid #eef1f8;
+}
+.lead { color: #555; margin-top: 0; }
+
+/* ===== フォームの各項目 ===== */
+.field {
+  display: block;
+  margin: 22px 0;
+}
+.label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+.req {
+  font-size: 0.7rem;
+  color: #fff;
+  background: #e2556a;
+  border-radius: 4px;
+  padding: 2px 6px;
+  margin-left: 8px;
+  font-style: normal;
+  vertical-align: middle;
+}
+
+input[type="text"],
+textarea,
+input[type="password"] {
+  width: 100%;
+  padding: 12px;
+  font-size: 1rem;
+  border: 1px solid #ccd3e0;
+  border-radius: 8px;
+  font-family: inherit;
+}
+input[type="text"]:focus,
+textarea:focus,
+input[type="password"]:focus {
+  outline: none;
+  border-color: #2b59c3;
+  box-shadow: 0 0 0 3px rgba(43, 89, 195, 0.15);
+}
+
+fieldset {
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+legend { padding: 0; }
+
+/* 選択肢（ラジオ・チェックボックス）を押しやすいタグ風に */
+.options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.option {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border: 1px solid #ccd3e0;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+}
+.option:hover { background: #f3f7ff; border-color: #2b59c3; }
+
+/* ===== ボタン ===== */
+.btn {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 14px 28px;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #fff;
+  background: #2b59c3;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.15s, transform 0.05s;
+}
+.btn:hover { background: #1f44a0; }
+.btn:active { transform: translateY(1px); }
+
+/* ===== 集計のグラフ（横棒） ===== */
+.bar-row {
+  display: grid;
+  grid-template-columns: 90px 1fr 110px;
+  align-items: center;
+  gap: 10px;
+  margin: 8px 0;
+}
+.bar-label { font-size: 0.9rem; }
+.bar-track {
+  background: #eef1f8;
+  border-radius: 999px;
+  height: 20px;
+  overflow: hidden;
+}
+.bar-fill {
+  display: block;
+  height: 100%;
+  background: #2b59c3;
+  border-radius: 999px;
+  transition: width 0.4s;
+}
+.bar-fill.alt { background: #e2556a; }
+.bar-value { font-size: 0.85rem; color: #555; text-align: right; }
+
+/* ===== 自由記述の一覧 ===== */
+.comments { list-style: none; padding: 0; }
+.comments li {
+  background: #f8faff;
+  border-left: 4px solid #2b59c3;
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin: 10px 0;
+}
+.comment-text { margin: 0 0 6px; }
+.comment-meta { margin: 0; font-size: 0.8rem; color: #888; }
+
+/* ===== こまかい部品 ===== */
+.topbar { display: flex; justify-content: space-between; align-items: center; }
+.logout { font-size: 0.85rem; color: #888; }
+.login-form { display: flex; flex-direction: column; gap: 12px; max-width: 280px; margin: 20px auto; }
+.error { color: #c0392b; font-weight: bold; }
+.muted { color: #999; }
+.footer-link { margin-top: 24px; text-align: center; }
+.footer-link a { color: #2b59c3; text-decoration: none; }
+.footer-link a:hover { text-decoration: underline; }
