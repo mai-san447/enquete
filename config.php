@@ -17,6 +17,7 @@ require $localConfig;
 // ── 回答を保存するCSVファイルの場所 ──
 // __DIR__ は「このファイルがあるフォルダ」という意味。さくらでもXAMPPでも同じ場所を指す。
 define('CSV_PATH', __DIR__ . '/data/answers.csv');
+define('CSV_DIR', dirname(CSV_PATH));
 
 // ── アンケートの選択肢（ここを直すだけで画面も集計も変わる） ──
 $AGE_OPTIONS          = ['10代', '20代', '30代', '40代', '50代', '60代以上'];
@@ -33,4 +34,28 @@ $CSV_HEADER = ['日時', 'お名前', '年代', '満足度', '役立った点', 
  */
 function h($s) {
     return htmlspecialchars((string)$s, ENT_QUOTES, 'UTF-8');
+}
+
+/**
+ * CSV保存先を用意する。
+ * さくらのレンタルサーバーでは、PHPから書き込めるフォルダが必要になる。
+ */
+function ensure_csv_storage() {
+    if (!is_dir(CSV_DIR) && !mkdir(CSV_DIR, 0705, true)) {
+        throw new RuntimeException('dataフォルダを作成できませんでした。');
+    }
+
+    if (file_exists(CSV_PATH) && is_writable(CSV_PATH)) {
+        return;
+    }
+
+    if (!is_writable(CSV_DIR)) {
+        throw new RuntimeException('dataフォルダに書き込み権限がありません。FTPで data フォルダの権限を 705 または 755 にしてください。');
+    }
+}
+
+function require_option($value, $options, $label) {
+    if (!in_array($value, $options, true)) {
+        throw new InvalidArgumentException($label . 'の値が正しくありません。');
+    }
 }

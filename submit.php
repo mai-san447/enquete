@@ -28,6 +28,16 @@ if ($errors) {
     show_error('次の項目が未入力です：' . implode('、', $errors));
 }
 
+try {
+    require_option($age, $AGE_OPTIONS, '年代');
+    require_option($satisfaction, $SATISFACTION_OPTIONS, '満足度');
+    foreach ((array)$helpful as $item) {
+        require_option($item, $HELPFUL_OPTIONS, '役立った点');
+    }
+} catch (InvalidArgumentException $e) {
+    show_error($e->getMessage());
+}
+
 // ④ チェックボックスは複数選べるので「・」でつないで1つの文字に
 $helpfulText = is_array($helpful) ? implode('・', $helpful) : '';
 
@@ -35,15 +45,16 @@ $helpfulText = is_array($helpful) ? implode('・', $helpful) : '';
 $row = [date('Y-m-d H:i:s'), $name, $age, $satisfaction, $helpfulText, $comment];
 
 // ⑥ data フォルダが無ければ作る
-$dir = dirname(CSV_PATH);
-if (!is_dir($dir)) {
-    mkdir($dir, 0705, true);
+try {
+    ensure_csv_storage();
+} catch (RuntimeException $e) {
+    show_error($e->getMessage());
 }
 
 // ⑦ ファイルに追記する
 //    'a' = 追記モード（消さずに末尾に足す）。初回だけ見出し行を書く。
 $isNewFile = !file_exists(CSV_PATH);
-$fp = fopen(CSV_PATH, 'a');
+$fp = fopen(CSV_PATH, 'ab');
 if ($fp === false) {
     show_error('回答を保存できませんでした。data フォルダの書き込み権限を確認してください。');
 }
