@@ -5,8 +5,14 @@
  */
 
 // ── 管理ページ(result.php)のパスワード ──
-// ※必ず自分だけが知っている文字に変えてください（提出前に変更）。
-define('ADMIN_PASS', 'Enq-Sakura-26x9k');
+// パスワードは公開リポジトリに載せないよう、git に入れない config.local.php に書く。
+// 初回は config.local.example.php をコピーして config.local.php を作り、値を変える。
+$localConfig = __DIR__ . '/config.local.php';
+if (!is_file($localConfig)) {
+    http_response_code(500);
+    exit('config.local.php がありません。config.local.example.php をコピーして作ってください。');
+}
+require $localConfig;
 
 // ── 回答を保存するCSVファイルの場所 ──
 // __DIR__ は「このファイルがあるフォルダ」という意味。さくらでもXAMPPでも同じ場所を指す。
