@@ -10,7 +10,7 @@
 http://akenning.sakura.ne.jp/enquete/
 
 ## ④アプリのログイン用IDまたはPassword（ある場合）
-- 集計ページ（result.php）のパスワード：`config.php` の `ADMIN_PASS` で設定
+- 集計ページ（result.php）のパスワード：`config.local.php` の `ADMIN_PASS` で設定（git には入れない。`config.local.example.php` をコピーして作る）
 - ※提出前に必ず自分だけのパスワードに変更すること（初期値 `gs2026` のままにしない）
 
 ## ⑤工夫した点・こだわった点

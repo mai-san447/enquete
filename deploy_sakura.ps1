@@ -10,6 +10,8 @@ $files = @(
     @{ Local = "submit.php"; Remote = "submit.php" },
     @{ Local = "result.php"; Remote = "result.php" },
     @{ Local = "config.php"; Remote = "config.php" },
+    # パスワード入りのため git には入れていない。手元で config.local.example.php から作っておく
+    @{ Local = "config.local.php"; Remote = "config.local.php" },
     @{ Local = "css/style.css"; Remote = "css/style.css" },
     @{ Local = "data/.htaccess"; Remote = "data/.htaccess" }
 )

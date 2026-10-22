@@ -16,7 +16,8 @@ if (isset($_GET['logout'])) {
 // ── ログイン処理（パスワードが合っていれば「合言葉OK」を記録） ──
 $loginError = '';
 if (isset($_POST['pass'])) {
-    if ($_POST['pass'] === ADMIN_PASS) {
+    // hash_equals は比較にかかる時間が一定なので、応答時間からパスワードを推測されにくい
+    if (is_string($_POST['pass']) && hash_equals(ADMIN_PASS, $_POST['pass'])) {
         $_SESSION['admin'] = true;
     } else {
         $loginError = 'パスワードが違います。';

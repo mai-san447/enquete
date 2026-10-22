@@ -55,6 +55,7 @@ enquete/
 ├─ submit.php
 ├─ result.php
 ├─ config.php
+├─ config.local.php      ← パスワード入り。git には入れない（config.local.example.php から作る）
 ├─ css/style.css
 ├─ data/.htaccess        ← 隠しファイル。表示されない場合は下の注意を参照
 ├─ README.md   （任意。アップ不要でもOK）
@@ -85,7 +86,7 @@ CSV保存（回答の書き込み）ができるよう、`data` フォルダの�
 1. ブラウザで `http://akenning.sakura.ne.jp/enquete/` を開く
 2. フォームに適当に入力して送信 →「送信が完了しました 🎉」が出ればOK
 3. `https://.../enquete/result.php` を開く → パスワード入力画面
-   - パスワード: **`Enq-Sakura-26x9k`**（デモ用に手元で控える。READMEには書かない）
+   - パスワード: `config.local.php` に書いた値（このファイルやREADMEには書かない）
    - 集計グラフと感想一覧が表示されればデプロイ成功
 4. 念のため `https://.../enquete/data/answers.csv` を直接開いてみる
    → **「Forbidden / 403」になればOK**（他人から回答データが見えない）
@@ -97,7 +98,7 @@ CSV保存（回答の書き込み）ができるよう、`data` フォルダの�
 - [ ] フォーム送信 → お礼ページが出る
 - [ ] result.php に新パスワードでログインでき、集計が出る
 - [ ] `data/answers.csv` に直接アクセスすると 403（Forbidden）になる
-- [ ] `config.php` のパスワードが初期値 `gs2026` から変更済み（→ 変更済み: `Enq-Sakura-26x9k`）
+- [ ] サーバーの `config.local.php` が、サンプルの初期値から変更済み
 - [ ] README.md の「③デプロイURL」に実際のURLを記入
 - [ ] デモ用パスワードを手元のメモに控えた
 
